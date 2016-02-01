@@ -1,0 +1,8 @@
+build:
+  image: armhfbuild/golang:1.5.3
+  environment:
+    - GO15VENDOREXPERIMENT=1
+  commands:
+    - mkdir -p github.com/drone
+    - git clone https://github.com/drone/drone-cli /drone/src/github.com/drone/drone-cli
+    - GOOS=linux   GOARCH=arm   go build -o ./bin/linux_arm/drone     github.com/drone/drone-cli/drone
