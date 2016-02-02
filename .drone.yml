@@ -6,4 +6,11 @@ build:
     - mkdir -p github.com/drone
     - git clone https://github.com/drone/drone-cli /drone/src/github.com/drone/drone-cli
     - grep -lr drone/drone-exec:latest /drone/src/github.com/drone/drone-cli | xargs sed -i 's/drone\/drone\-exec:latest/armhfbuild\/drone-exec:latest/'
-    - GOOS=linux   GOARCH=arm   go build -o ./bin/linux_arm/drone     github.com/drone/drone-cli/drone
+    - GOOS=linux   GOARCH=arm   go build -o drone     github.com/drone/drone-cli/drone
+
+publish:
+  github_release:
+    api_key: $$GITHUB_API_KEY
+    files:
+      - drone
+    checksum: sha1
