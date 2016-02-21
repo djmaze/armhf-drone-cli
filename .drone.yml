@@ -2,6 +2,7 @@ build:
   image: armhfbuild/golang:1.5.3
   environment:
     - GO15VENDOREXPERIMENT=1
+    - CGO_ENABLED=0
   commands:
     - mkdir -p github.com/drone
     - git clone https://github.com/drone/drone-cli /drone/src/github.com/drone/drone-cli
